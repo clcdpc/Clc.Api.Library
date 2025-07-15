@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <PackageId>Clc.Api.Library</PackageId>
+    <Authors>Central Library Consortium, Michael Fields</Authors>
+    <Description>A helper library for consuming the CLC API</Description>
+    <PackageTags>clc; clcapi</PackageTags>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Version>1.0.0</Version>
+    <Title>CLC API Helper Library</Title>
+    <PackageProjectUrl>https://github.com/clcdpc/Clc.Api.Library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/clcdpc/Clc.Api.Library</RepositoryUrl>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Clc.Api.Models" Version="1.0.0" />
+    <PackageReference Include="Clc.Rest.Client" Version="2.2.1-beta" />
+  </ItemGroup>
+
+</Project>
