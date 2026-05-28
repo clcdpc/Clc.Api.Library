@@ -1,9 +1,6 @@
 using Clc.Api.Models;
 using Clc.Rest;
 using Clc.Rest.Auth;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("Clc.Api.Library.Tests")]
 
 namespace Clc.Api.Library
 {
