@@ -1,6 +1,7 @@
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using Clc.Api.Library;
 using Clc.Api.Models;
 using Clc.Rest;
@@ -49,6 +50,18 @@ public class ClcApiClientTests
         await client.GetInTransitItemsAsync(42, includeLibrary: true);
 
         AssertRequest(handler, HttpMethod.Post, "https://example.test/items/in-transit/42?includeLibrary=True");
+    }
+
+    [TestMethod]
+    public async Task GetInTransitItemsAsync_DefaultOverload_SendsExpectedRequestAndEmptyCollectionBody()
+    {
+        var handler = JsonHandler("[]");
+        var client = CreateClient(handler);
+
+        await client.GetInTransitItemsAsync(42);
+
+        AssertRequest(handler, HttpMethod.Post, "https://example.test/items/in-transit/42?includeLibrary=False");
+        AssertRequestBodyIsEmptyJsonArray(handler);
     }
 
     [TestMethod]
@@ -220,6 +233,14 @@ public class ClcApiClientTests
         {
             StringAssert.Contains(handler.LastRequestBody, expectedValue);
         }
+    }
+
+    private static void AssertRequestBodyIsEmptyJsonArray(CapturingHttpMessageHandler handler)
+    {
+        Assert.IsFalse(string.IsNullOrWhiteSpace(handler.LastRequestBody));
+        using var body = JsonDocument.Parse(handler.LastRequestBody);
+        Assert.AreEqual(JsonValueKind.Array, body.RootElement.ValueKind);
+        Assert.AreEqual(0, body.RootElement.GetArrayLength());
     }
 
     private static void AssertPublicMethodReturnType<T>(string methodName, params Type[] parameterTypes)
