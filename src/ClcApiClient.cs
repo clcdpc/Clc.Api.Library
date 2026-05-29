@@ -1,4 +1,4 @@
-﻿using Clc.Api.Models;
+using Clc.Api.Models;
 using Clc.Rest;
 using Clc.Rest.Auth;
 
@@ -7,6 +7,13 @@ namespace Clc.Api.Library
     public class ClcApiClient : RestClient
     {
         public ClcApiClient(string baseUrl, string apiKey)
+        {
+            BaseUrl = baseUrl;
+            Authenticator = new HeaderApiKeyAuthenticator(apiKey, "x-api-key");
+        }
+
+        internal ClcApiClient(string baseUrl, string apiKey, HttpClient client)
+            : base(client)
         {
             BaseUrl = baseUrl;
             Authenticator = new HeaderApiKeyAuthenticator(apiKey, "x-api-key");
