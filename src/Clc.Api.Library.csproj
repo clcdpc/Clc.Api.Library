@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Clc.Api.Models" Version="1.0.0" />
-    <PackageReference Include="Clc.Rest.Client" Version="2.2.1-beta" />
+    <PackageReference Include="Clc.Rest.Client" Version="3.0.0-alpha.2" />
   </ItemGroup>
 
 </Project>
